@@ -34,6 +34,7 @@
   
 #### DB Tables
 - Review
+  - Image
   - Rating
   - Title
   - Description
