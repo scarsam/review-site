@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+
+# OmniAuth 2
+gem 'omniauth-google-oauth2'
 # Bootstrap
 gem 'bootstrap-sass'
 # ENV variables
