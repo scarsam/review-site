@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Serializer
+gem 'active_model_serializers'
 # OmniAuth
 gem 'omniauth'
 # OmniAuth2 for Google
