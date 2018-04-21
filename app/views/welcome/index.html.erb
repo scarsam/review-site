@@ -1,5 +1,5 @@
-<h2>Hello World</h2>
+<h2>Hello <%= @author.name %></h2>
 <p>
   The time is now: <%= Time.now %>
 </p>
-<%= link_to('Log in with Google!', '/auth/google') %>
+<%= link_to('Log in with Google!', '/auth/google_oauth2') %>

@@ -5,8 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
-# OmniAuth 2
+# OmniAuth
+gem 'omniauth'
+# OmniAuth2 for Google
 gem 'omniauth-google-oauth2'
 # jQuery
 gem 'jquery-rails'
@@ -57,6 +58,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry'
+  gem 'thin'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
