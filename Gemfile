@@ -8,8 +8,10 @@ end
 
 # OmniAuth 2
 gem 'omniauth-google-oauth2'
+# jQuery
+gem 'jquery-rails'
 # Bootstrap
-gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.1.0'
 # ENV variables
 gem 'dotenv-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
