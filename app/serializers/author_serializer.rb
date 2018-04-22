@@ -1,3 +1,4 @@
 class AuthorSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :name, :email, :image, :uid
+  has_many :reviews
 end
