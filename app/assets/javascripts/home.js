@@ -27,16 +27,19 @@ function expandWindow(object) {
 function getReviews() {
   $.get('/reviews', function(response) {
     response.forEach(function(review) {
-      let newReview = new Review(review['title'], review['description'], review['rating'])
-      debugger;
+      appendContent(review)
     });
   })
 }
 
-class Review {
-  constructor(title, description, rating) {
-    this.title = title;
-    this.description = description;
-    this.rating = rating;
-  }
+function appendContent(content) {
+  let newReview = new Review(content['title'], content['description'], content['rating']);
+  $('.row').append(
+    `<div>
+      <h1>${newReview.title}</h1>
+      <h2>${newReview.description}</h2>
+      <h3>${newReview.rating}</h3>
+    </div>`
+  )
 }
+
