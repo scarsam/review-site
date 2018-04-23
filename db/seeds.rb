@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+author = Author.create(
+  name: 'Sam Ojling',
+  email: 'sam@ojling.com',
+  image: 'http://test.jpg',
+  uid: '1'
+)
+
+author.reviews.create(
+  title: 'Test',
+  description: 'Description lorem',
+  rating: 3,
+)

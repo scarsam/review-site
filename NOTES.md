@@ -9,7 +9,7 @@
   
 - Index page for all reviews
   - List all reviews
-  - x amount per page
+  - Click to load more..
   - Concatenated + author
   
 - Show page for a review
