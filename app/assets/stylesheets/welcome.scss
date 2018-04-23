@@ -1,3 +1,21 @@
 h2 {
   color: red;
 }
+
+@keyframes slide {
+  0% {max-width: 100%; padding: 0 15px;}
+  100% {max-width: 0; padding: 0 0;}
+}
+
+@keyframes opacity {
+  0% {opacity: 100%;}
+  100% {opacity: 0;}
+}
+
+.animate-div {
+  animation: slide 2s ease-in-out forwards;
+}
+
+.animate-text {
+  animation: opacity 1s ease-in-out forwards;
+}
