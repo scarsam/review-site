@@ -11,7 +11,7 @@ class Review {
   appendReviews() {
     $('.content .list-group').append(
       `
-      <a href="#" data-review="${this.id}" class="review-link list-group-item list-group-item-action flex-column align-items-start">
+      <a data-review="${this.id}" id="review-${this.id}" class="review-link list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">${this.title}</h5>
           <small>Posted 3 days ago</small>
@@ -20,7 +20,7 @@ class Review {
         <small>${this.rating}</small>
       </a>
       `
-    ).on('click', 'a', function(e) {
+    ).on('click', `#review-${this.id}`, function(e) {
       e.preventDefault();
       let id = $(this).data('review');
       getReview(id)
@@ -48,9 +48,10 @@ function getReviews() {
     });
   })
 }
-
+// this request runs wtice
 function getReview(id) {
   $.get('/reviews/' + id, function(response) {
+    debugger;
     let findReview = reviewsStore.find(review => review.id === response.id);
     findReview.appendReview()
   })
