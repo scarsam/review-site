@@ -14,7 +14,7 @@ class Review {
       <a href="#" data-review="${this.id}" class="review-link list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">${this.title}</h5>
-          <small>Updated 3 days ago</small>
+          <small>Posted 3 days ago</small>
         </div>
         <p class="mb-1">${this.description}</p>
         <small>${this.rating}</small>
@@ -51,8 +51,8 @@ function getReviews() {
 
 function getReview(id) {
   $.get('/reviews/' + id, function(response) {
-    let findReview = reviewsStore.filter(review => review.id === response.id);
-    findReview[0].appendReview()
+    let findReview = reviewsStore.find(review => review.id === response.id);
+    findReview.appendReview()
   })
 }
 
