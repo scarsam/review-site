@@ -11,7 +11,7 @@ class Review {
   appendReview() {
     $('.content .list-group').append(
       `
-      <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+      <a href="#" data-review="${this.id}" class="review-link list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">${this.title}</h5>
           <small>Updated 3 days ago</small>
@@ -20,12 +20,12 @@ class Review {
         <small>${this.rating}</small>
       </a>
       `
-    )
+    ).on('click', 'a', function(e) {
+      e.preventDefault();
+      let id = $(this).data('review');
+      getReview(id)
+    })
   }
-}
-
-function isNewReview(review) {
-  return !reviewIds.some(existingId => existingId === review.id)
 }
 
 function getReviews() {
@@ -34,6 +34,16 @@ function getReviews() {
       if (isNewReview(review)) {createReviews(review)}
     });
   })
+}
+
+function getReview(id) {
+  $.get('/reviews/' + id, function(response) {
+    debugger;
+  })
+}
+
+function isNewReview(review) {
+  return !reviewIds.some(existingId => existingId === review.id)
 }
 
 function createReviews(review) {
@@ -46,3 +56,4 @@ function createReviews(review) {
   reviewIds.push(newReview.id);
   newReview.appendReview();
 }
+
