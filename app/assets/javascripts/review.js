@@ -1,5 +1,7 @@
+// Storing all my review objects
 let reviewsStore = [];
 
+// Review class constructor with some prototype methods to append content to DOM
 class Review {
   constructor(id, title, description, rating) {
     this.id = id;
@@ -7,7 +9,7 @@ class Review {
     this.description = description;
     this.rating = rating;
   }
-
+  // Appending reviews and attaching click event to load the show page
   appendReviews() {
     $('.content .list-group').append(
       `
@@ -26,7 +28,7 @@ class Review {
       getReview(id)
     })
   }
-
+  // Appending review to show page
   appendReview() {
     $('.content').empty().append(
       `
@@ -40,7 +42,7 @@ class Review {
     )
   }
 }
-
+// Get request to get all reviews from the index action
 function getReviews() {
   $.get('/reviews', function(response) {
     response.forEach(function(review) {
@@ -48,19 +50,19 @@ function getReviews() {
     });
   })
 }
-// this request runs wtice
+// Get request to get a single review from the show action
 function getReview(id) {
   $.get('/reviews/' + id, function(response) {
-    debugger;
     let findReview = reviewsStore.find(review => review.id === response.id);
     findReview.appendReview()
   })
 }
-
+// Check if review is already in the store, if so return false
 function isNewReview(review) {
   return !reviewsStore.some(existingReview => existingReview.id === review.id)
 }
-
+// Function to instantiate a new review based on request response
+// Push that review to the store and append it to the DOM
 function createReviews(review) {
   let newReview = new Review(
     review['id'],

@@ -31,7 +31,7 @@ function slideWindow(mainObject, siblingObject) {
     left: '0%'
   }, 1500)
 }
-
+// Animates content div and slides it away off the screen
 function closeWindow() {
   $('.content').animate({
     left: '-100%'
