@@ -1,17 +1,12 @@
-h2 {
-  color: red;
-}
-
 @keyframes opacity {
   0% {opacity: 100%;}
   100% {opacity: 0;}
 }
 
 .content {
-  background: red;
   left: -100%;
 }
 
 .animate-text {
-  animation: opacity 1s ease-in-out forwards;
+  animation: opacity 2s ease-in-out forwards;
 }

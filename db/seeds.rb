@@ -15,5 +15,18 @@ author = Author.create(
 author.reviews.create(
   title: 'Test',
   description: 'Description lorem',
-  rating: 3,
+  rating: 3
+)
+
+author = Author.create(
+  name: 'Oscar Ojling',
+  email: 'oscar@ojling.com',
+  image: 'http://test2.jpg',
+  uid: '2'
+)
+
+author.reviews.create(
+  title: 'Review number 2',
+  description: 'Description lorem ipsum mr lorem is the lorem master',
+  rating: 1
 )

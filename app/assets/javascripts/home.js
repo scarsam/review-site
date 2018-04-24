@@ -20,28 +20,35 @@ function attachListeners() {
 }
 // Add classes on click to container div and anchor inside div
 function slideWindow(mainObject, siblingObject) {
+  $(mainObject).addClass('animate-text');
+  $(siblingObject).addClass('animate-text');
   $('.content').animate({
     left: '0%'
-  }, 1000)
+  }, 1500)
 }
 
 
 function getReviews() {
   $.get('/reviews', function(response) {
     response.forEach(function(review) {
-      appendContent(review)
+      appendReview(review)
     });
   })
 }
 
-function appendContent(content) {
-  let newReview = new Review(content['title'], content['description'], content['rating']);
-  $('.left').append(
-    `<div>
-      <h1>${newReview.title}</h1>
-      <h2>${newReview.description}</h2>
-      <h3>${newReview.rating}</h3>
-    </div>`
+function appendReview(review) {
+  let newReview = new Review(review['title'], review['description'], review['rating']);
+  $('.content .list-group').append(
+    `
+    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">${newReview.title}</h5>
+        <small>3 days ago</small>
+      </div>
+      <p class="mb-1">${newReview.description}</p>
+      <small>${newReview.rating}</small>
+    </a>
+    `
   )
 }
 
