@@ -1,4 +1,4 @@
-let reviewIds = [];
+let reviewsStore = [];
 
 class Review {
   constructor(id, title, description, rating) {
@@ -8,7 +8,7 @@ class Review {
     this.rating = rating;
   }
 
-  appendReview() {
+  appendReviews() {
     $('.content .list-group').append(
       `
       <a href="#" data-review="${this.id}" class="review-link list-group-item list-group-item-action flex-column align-items-start">
@@ -26,6 +26,19 @@ class Review {
       getReview(id)
     })
   }
+
+  appendReview() {
+    $('.content').empty().append(
+      `
+        <div class="d-flex w-100">
+          <h5 class="mb-1">${this.title}</h5>
+          <small>Updated 3 days ago</small>
+          <p class="mb-1">${this.description}</p>
+          <small>${this.rating}</small>
+        </div>
+      `
+    )
+  }
 }
 
 function getReviews() {
@@ -38,12 +51,13 @@ function getReviews() {
 
 function getReview(id) {
   $.get('/reviews/' + id, function(response) {
-    debugger;
+    let findReview = reviewsStore.filter(review => review.id === response.id);
+    findReview[0].appendReview()
   })
 }
 
 function isNewReview(review) {
-  return !reviewIds.some(existingId => existingId === review.id)
+  return !reviewsStore.some(existingReview => existingReview.id === review.id)
 }
 
 function createReviews(review) {
@@ -53,7 +67,7 @@ function createReviews(review) {
     review['description'],
     review['rating']
   );
-  reviewIds.push(newReview.id);
-  newReview.appendReview();
+  reviewsStore.push(newReview);
+  newReview.appendReviews();
 }
 
