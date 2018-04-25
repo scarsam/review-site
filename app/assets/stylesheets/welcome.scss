@@ -3,10 +3,21 @@
   100% {opacity: 0;}
 }
 
-.content {
-  left: -100%;
-}
-
 .animate-text {
   animation: opacity 2s ease-in-out forwards;
+}
+
+.reviews-container,
+.review-container {
+  height: 100vh;
+  position: absolute;
+  left: 15px;
+  top: 0;
+  visibility: hidden;
+  width: 100%;
+}
+
+.show {
+  visibility: visible;
+  z-index: 1;
 }
