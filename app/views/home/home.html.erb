@@ -5,11 +5,28 @@
   <div class="d-flex align-items-center justify-content-center right col bg-dark">
     <%= link_to "Write a review", new_review_path, id: 'write-reviews', class: 'h1 text-light mb-0' %>
   </div>
-  <div class="content height-100vh col position-absolute bg-light">
-    <h1>Reviews</h1>
-    <div class="list-group"></div>
-    <button type="button" class="close">
-      <span>&times;</span>
-    </button>
+</div>
+
+<div class="reviews-container content-container row bg-light">
+  <div class="col">
+    <div class="top-bar d-flex">
+      <h1 class="col">Reviews</h1>
+      <button type="button" class="close">
+        <span>&times;</span>
+      </button>
+    </div>
+    <div class="reviews list-group"></div>
+  </div>
+</div>
+
+<div class="review-container content-container row bg-light">
+  <div class="col">
+    <div class="top-bar d-flex">
+      <h1 class="col">Review</h1>
+      <button type="button" class="close">
+        <span>&times;</span>
+      </button>
+    </div>
+    <div class="review"></div>
   </div>
 </div>
