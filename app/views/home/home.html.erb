@@ -1,60 +1,22 @@
-<div class="row height-100vh w-100">
-  <div class="d-flex align-items-center justify-content-center left col bg-light">
-    <%= link_to "Read reviews", reviews_path, id: 'read-reviews', class: 'h1 text-dark mb-0' %>
-  </div>
-  <div class="d-flex align-items-center justify-content-center right col bg-dark">
-    <%= link_to "Write a review", new_review_path, id: 'write-review', class: 'h1 text-light mb-0' %>
-  </div>
-</div>
-
-<div class="reviews-container content-container row bg-light">
-  <div class="col">
-    <div class="top-bar d-flex">
-      <h1 class="col">Reviews</h1>
-      <button type="button" class="close">
-        <span>&times;</span>
-      </button>
+<div class="container-fluid">
+  <div class="row height-100vh">
+    <div class="d-flex flex-column justify-content-center col bg-light">
+      <%= render partial: 'partials/reviews' %>
     </div>
-    <div class="reviews list-group"></div>
-  </div>
-</div>
-
-<div class="review-container content-container row bg-light">
-  <div class="col">
-    <div class="top-bar d-flex">
-      <h1 class="col">Review</h1>
-      <button type="button" class="close">
-        <span>&times;</span>
-      </button>
+    <div class="d-flex flex-column justify-content-center col bg-dark">
+      <%= render partial: 'partials/new' %>
     </div>
-    <div class="review"></div>
   </div>
-</div>
 
-<div class="write-review-container content-container row bg-light">
-  <div class="col">
-    <div class="top-bar d-flex">
-      <h1 class="col">New Review</h1>
-      <button type="button" class="close">
-        <span>&times;</span>
-      </button>
-    </div>
-    <div class="col write-review">
-      <%= form_tag('/reviews') do %>
-        <div class="form-group">
-          <%= label_tag 'title' %>
-          <%= text_field_tag 'title', nil, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= label_tag 'description' %>
-          <%= text_area_tag 'description', nil, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= label_tag 'rating' %>
-          <%= number_field_tag 'rating', nil, class: 'form-control' %>
-        </div>
-          <%= submit_tag 'Create review', class: 'btn btn-primary' %>
-      <% end %>
+  <div class="review-container content-container row bg-light">
+    <div class="col">
+      <div class="top-bar d-flex">
+        <h1 class="col">Review</h1>
+        <button type="button" class="close">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="review"></div>
     </div>
   </div>
 </div>

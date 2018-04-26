@@ -25,7 +25,7 @@ class Review {
   }
   // Appending reviews and attaching click event to load the show page
   appendReviews() {
-    $('.reviews-container .reviews')
+    $('.reviews')
       // Calls reviewTemplate function and pass in the object
       // which returns html with object properties
       // Bind an click event on each anchor tag that invoked getReview function and passes in the id
@@ -48,7 +48,6 @@ function getReviews() {
     response.forEach(function(review) {
       if (isNewReview(review)) {createReviews(review)}
     });
-    $('.reviews-container').addClass('show');
   })
 }
 

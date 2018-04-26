@@ -1,0 +1,16 @@
+<h1 class="text-light">New Review</h1>
+<%= form_tag('/reviews') do %>
+  <div class="form-group">
+    <%= label_tag 'title', nil, class: 'text-light' %>
+    <%= text_field_tag 'title', nil, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= label_tag 'description', nil, class: 'text-light' %>
+    <%= text_area_tag 'description', nil, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= label_tag 'rating', nil, class: 'text-light' %>
+    <%= number_field_tag 'rating', nil, class: 'form-control' %>
+  </div>
+  <%= submit_tag 'Create review', class: 'btn btn-primary' %>
+<% end %>
