@@ -6,7 +6,12 @@ class SessionsController < ApplicationController
       u.image = auth[:info][:image]
     end
     session[:user_id] = @author.id
-    render root_path
+    redirect_to home_path
+  end
+
+  def destroy
+    session.destroy
+    redirect_to root_path
   end
 
   private

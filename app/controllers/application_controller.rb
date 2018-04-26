@@ -3,11 +3,15 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?
 
   private
-  def logged_in?
-    !!current_user
+  def authenticate_author
+    redirect_to root_path unless logged_in?
   end
 
-  def current_user
-    @current_user ||= Author.find(session[:user_id]) if session[:user_id]
+  def logged_in?
+    !!current_author
+  end
+
+  def current_author
+    @current_author ||= Author.find(session[:user_id]) if session[:user_id]
   end
 end

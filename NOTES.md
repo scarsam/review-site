@@ -56,3 +56,10 @@
 - Paperclip?
 - Dotenv
 - Bootstrap
+
+
+### TODO
+- Delete an item created by yourself
+- Click on author to display author reviews
+- Display login if currently not logged in instead of form
+- Log out link
