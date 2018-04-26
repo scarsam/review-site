@@ -33,12 +33,13 @@ class Review {
       .on('click', `#review-${this.id}`, function(e) {
         e.preventDefault();
         let id = $(this).data('review');
-        getReview(id)
-    })
+        getReview(id);
+      })
   }
   // Appending review to show page by calling reviewTemplate and passing in the object
   appendReview() {
-    $('.review-container .review').empty().append(reviewTemplate(this))
+    $('.review-container .review').empty().append(reviewTemplate(this));
+    $('.review-container').addClass('show');
   }
 }
 
@@ -54,9 +55,8 @@ function getReviews() {
 // Get request to get a single review from the show action
 function getReview(id) {
   $.get('/reviews/' + id, function(response) {
-    let findReview = reviewsStore.find(review => review.id === response.id);
-    findReview.appendReview();
-    $('.review-container').addClass('show');
+    let reviewFromStore = reviewsStore.find(review => review.id === response.id);
+    reviewFromStore.appendReview();
   })
 }
 
