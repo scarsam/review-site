@@ -30,16 +30,27 @@ class Review {
       // which returns html with object properties
       // Bind an click event on each anchor tag that invoked getReview function and passes in the id
       .append(reviewsTemplate(this))
-      .on('click', `#review-${this.id}`, function(e) {
-        e.preventDefault();
-        let id = $(this).data('review');
-        getReview(id);
-      })
+        .on('click', `#review-${this.id}`, function(e) {
+          e.preventDefault();
+          let id = $(this).data('review');
+          getReview(id);
+        })
   }
   // Appending review to show page by calling reviewTemplate and passing in the object
   appendReview() {
-    $('.review-container .review').empty().append(reviewTemplate(this));
+    $('.review-container .review').empty().append(reviewTemplate(this))
+      .on('click', `#author-${this.id}`, function(e) {
+        e.preventDefault();
+        let id = $(this).data('author');
+        getAuthorReviews(id);
+      });
+    $('.author-reviews-container').removeClass('show');
     $('.review-container').addClass('show');
+  }
+  appendAuthorReviews() {
+    $('.author-reviews').append(reviewsTemplate(this));
+    $('.review-container').removeClass('show');
+    $('.author-reviews-container').addClass('show');
   }
 }
 
@@ -48,6 +59,14 @@ function submitReview(values) {
     createReview(response);
     $('form')[0].reset();
     $('form .btn').removeAttr('disabled');
+  })
+}
+
+function getAuthorReviews(id) {
+  let reviews = reviewsStore.filter(review => review.author.id === id);
+  $('.author-reviews').empty();
+  reviews.forEach(function(review) {
+    review.appendAuthorReviews();
   })
 }
 
@@ -91,7 +110,7 @@ function createReview(review) {
 // HTML template for reviews
 function reviewsTemplate(object) {
   return $.parseHTML(`
-    <a data-review="${object.id}" id="review-${object.id}" class="list-group-item list-group-item-action flex-column align-items-start">
+    <a href="#" data-review="${object.id}" id="review-${object.id}" class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">${object.title} - ${object.rating}</h5>
       <small>Posted ${object.daysSinceCreated()} day(s) ago</small>
@@ -109,7 +128,7 @@ function reviewTemplate(object) {
       <h5 class="mb-1">${object.title} - ${object.rating}</h5>
       <small>Posted ${object.daysSinceCreated()} day(s) ago</small>
       <p class="mb-1">${object.description}</p>
-      <small>Posted by: ${object.author.name}</small>
+      <small>Posted by: <a href="#" id="author-${object.author.id}" data-author="${object.author.id}">${object.author.name}</a></small>
     </div>
   `)
 }
