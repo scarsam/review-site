@@ -12,8 +12,9 @@ function attachListeners() {
   });
 
   // Prevent event default and send clicked element to the expandWindow function
-  $('#write-reviews').click(function(e) {
+  $('#write-review').click(function(e) {
     e.preventDefault();
+    $('.write-review-container').addClass('show');
   });
 
   $('.close').click(function(e) {

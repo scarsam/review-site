@@ -3,12 +3,13 @@ let reviewsStore = [];
 
 // Review class constructor with some prototype methods to append content to DOM
 class Review {
-  constructor(id, title, description, rating, created) {
+  constructor(id, title, description, rating, created, author) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.rating = rating;
     this.created = created;
+    this.author = author;
   }
   // Takes todays date and convert it to MS
   // Takes reviews created date and converts it to MS
@@ -68,15 +69,16 @@ function isNewReview(review) {
 // Function to instantiate a new review based on request response
 // Push that review to the store and append it to the DOM
 function createReviews(review) {
-  let newReview = new Review(
+  let reviewObject = new Review(
     review['id'],
     review['title'],
     review['description'],
     review['rating'],
-    review['created_at']
+    review['created_at'],
+    review['author']
   );
-  reviewsStore.push(newReview);
-  newReview.appendReviews();
+  reviewsStore.push(reviewObject);
+  reviewObject.appendReviews();
 }
 
 // HTML template for reviews
@@ -84,11 +86,11 @@ function reviewsTemplate(object) {
   return $.parseHTML(`
     <a data-review="${object.id}" id="review-${object.id}" class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">${object.title}</h5>
+      <h5 class="mb-1">${object.title} - ${object.rating}</h5>
       <small>Posted ${object.daysSinceCreated()} day(s) ago</small>
     </div>
       <p class="mb-1">${object.description}</p>
-      <small>${object.rating}</small>
+      <small>Posted by: ${object.author.name}</small>
     </a>
   `)
 }
@@ -97,10 +99,10 @@ function reviewsTemplate(object) {
 function reviewTemplate(object) {
   return $.parseHTML(`
     <div class="d-flex w-100">
-      <h5 class="mb-1">${object.title}</h5>
+      <h5 class="mb-1">${object.title} - ${object.rating}</h5>
       <small>Posted ${object.daysSinceCreated()} day(s) ago</small>
       <p class="mb-1">${object.description}</p>
-      <small>${object.rating}</small>
+      <small>Posted by: ${object.author.name}</small>
     </div>
   `)
 }
