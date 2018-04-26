@@ -10,6 +10,11 @@ function attachListeners() {
   $('.close').click(function(e) {
     e.preventDefault();
     closeWindow(this);
+  });
+
+  $('form').submit(function(e) {
+    e.preventDefault();
+    submitReview($(this).serialize());
   })
 }
 

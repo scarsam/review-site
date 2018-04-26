@@ -10,6 +10,8 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    @review = current_user.reviews.create(review_params)
+    render json: @review, status: 201
   end
 
   def show
@@ -20,5 +22,9 @@ class ReviewsController < ApplicationController
 
   def set_review
     @review = Review.find(params[:id])
+  end
+
+  def review_params
+    params.permit(:title, :description, :rating)
   end
 end

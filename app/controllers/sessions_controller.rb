@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
       u.image = auth[:info][:image]
     end
     session[:user_id] = @author.id
-    render 'welcome/index'
+    render root_path
   end
 
   private

@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
 
   private
   def logged_in?
-    !!session[:user_id]
+    !!current_user
+  end
+
+  def current_user
+    @current_user ||= Author.find(session[:user_id]) if session[:user_id]
   end
 end

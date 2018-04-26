@@ -43,11 +43,19 @@ class Review {
   }
 }
 
+function submitReview(values) {
+  $.post('/reviews', values).done(function(response) {
+    createReview(response);
+    $('form')[0].reset();
+    $('form .btn').removeAttr('disabled');
+  })
+}
+
 // Get request to get all reviews from the index action
 function getReviews() {
   $.get('/reviews', function(response) {
     response.forEach(function(review) {
-      if (isNewReview(review)) {createReviews(review)}
+      if (isNewReview(review)) {createReview(review)}
     });
   })
 }
@@ -67,7 +75,7 @@ function isNewReview(review) {
 
 // Function to instantiate a new review based on request response
 // Push that review to the store and append it to the DOM
-function createReviews(review) {
+function createReview(review) {
   let reviewObject = new Review(
     review['id'],
     review['title'],
