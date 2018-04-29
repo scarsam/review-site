@@ -5,28 +5,28 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-author = Author.create(
-  name: 'Sam Ojling',
-  email: 'sam@ojling.com',
-  image: 'http://test.jpg',
-  uid: '1'
-)
-
-author.reviews.create(
-  title: 'Test',
-  description: 'Description lorem',
-  rating: 3
-)
-
-author2 = Author.create(
-  name: 'Oscar Ojling',
-  email: 'oscar@ojling.com',
-  image: 'http://test2.jpg',
-  uid: '2'
-)
-
-author2.reviews.create(
-  title: 'Review number 2',
-  description: 'Description lorem ipsum mr lorem is the lorem master',
-  rating: 1
-)
+# author = Author.create(
+#   name: 'Sam Ojling',
+#   email: 'sam@ojling.com',
+#   image: 'http://test.jpg',
+#   uid: '1'
+# )
+#
+# author.reviews.create(
+#   title: 'Test',
+#   description: 'Description lorem',
+#   rating: 3
+# )
+#
+# author2 = Author.create(
+#   name: 'Oscar Ojling',
+#   email: 'oscar@ojling.com',
+#   image: 'http://test2.jpg',
+#   uid: '2'
+# )
+#
+# author2.reviews.create(
+#   title: 'Review number 2',
+#   description: 'Description lorem ipsum mr lorem is the lorem master',
+#   rating: 1
+# )
