@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get '/home' => 'home#home'
   get '/auth/google_oauth2/callback' => 'sessions#create'
   get '/sessions/logout' => 'sessions#destroy'
-  resources :reviews
-  resources :authors
+  resources :reviews, only: [:index, :create]
+  resources :authors, shallow: true do
+    resources :reviews, only: [:index, :show, :create]
+  end
 end
