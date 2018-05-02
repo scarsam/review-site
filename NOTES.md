@@ -1,4 +1,4 @@
-## Review site
+## Reviews site
 
 #### Overview
 - Nav
@@ -28,12 +28,12 @@
   - Rating
   - Image
 
-- Review prototype methods
+- Reviews prototype methods
   - Order?
   - Format the review?
   
 #### DB Tables
-- Review
+- Reviews
   - Image
   - Rating
   - Title
@@ -47,7 +47,7 @@
   - uID
   
 ### Models
-- Review
+- Reviews
 - Author
 - Session
 
