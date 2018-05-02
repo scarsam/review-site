@@ -63,3 +63,8 @@
 - Click on author to display author reviews
 - Display login if currently not logged in instead of form
 - Log out link
+
+V2
+- Validation
+- Rating (stars?)
+- Tests

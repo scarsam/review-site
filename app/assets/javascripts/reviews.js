@@ -130,8 +130,7 @@ function reviewsTemplate(object) {
 function reviewTemplate(object) {
   return $.parseHTML(`
     <div class="d-flex flex-column w-100">
-      <h1 class="mb-1">${object.title} - ${object.rating}</h1>
-      <small>Posted ${object.daysSinceCreated()} day(s) ago</small>
+      <h4 class="mb-1">${object.title} - ${object.rating}</h4>
       <p class="mb-1">${object.description}</p>
       <small>Posted by: <a href="#" class="author-${object.author.id}" data-author="${object.author.id}">${object.author.name}</a></small>
     </div>
