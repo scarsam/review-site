@@ -1,12 +1,20 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show]
+  before_action :authenticate_author, only: [:start]
+
+  def start
+    @author = current_author
+  end
 
   def index
-    @reviews = Review.all
+    author = Author.find(params[:author_id])
+    @reviews = author.reviews
     render json: @reviews
   end
 
-  def new
+  def welcome
+    @reviews = Review.all
+    render json: @reviews
   end
 
   def create
