@@ -1,16 +1,16 @@
-<nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <h1>Hello</h1>
-  </a>
+<nav class="navbar navbar-light bg-light height-10vh">
+  <div class="navbar-brand">
+    <h1 class="mb-0">ReviewSite</h1>
+  </div>
   <ul class="nav justify-content-end d-flex align-items-center">
     <li class="nav-item">
-      <a class="nav-link active" href="#">Reviews</a>
+      <a class="nav-link active" id="nav-reviews" href="#">Reviews</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Post Review</a>
+      <a class="nav-link" id="nav-my-reviews" data-author-id="<%= @author.id %>" href="#">My Reviews</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">My Reviews</a>
+      <a href="/sessions/logout">Log Out</a>
     </li>
   </ul>
 </nav>
