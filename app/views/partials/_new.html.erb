@@ -1,5 +1,6 @@
-<h1 class="text-light">New Review</h1>
-<%= form_tag('/reviews') do %>
+<h1 class="text-light">New Reviews</h1>
+<%= form_tag("/authors/#{@author.id}/reviews") do %>
+  <%= hidden_field_tag :author_id, @author.id  %>
   <div class="form-group">
     <%= label_tag 'title', nil, class: 'text-light' %>
     <%= text_field_tag 'title', nil, class: 'form-control' %>
@@ -14,4 +15,3 @@
   </div>
   <%= submit_tag 'Create review', class: 'btn btn-primary' %>
 <% end %>
-<a href="/sessions/logout">Log Out</a>
