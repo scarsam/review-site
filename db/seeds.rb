@@ -18,15 +18,15 @@
 #   rating: 3
 # )
 #
-# author2 = Author.create(
+# author1 = Author.create(
 #   name: 'Oscar Ojling',
 #   email: 'oscar@ojling.com',
 #   image: 'http://test2.jpg',
 #   uid: '2'
 # )
 #
-# author2.reviews.create(
-#   title: 'Review number 2',
+# author1.reviews.create(
+#   title: 'Reviews number 2',
 #   description: 'Description lorem ipsum mr lorem is the lorem master',
 #   rating: 1
 # )
