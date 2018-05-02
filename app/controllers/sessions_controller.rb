@@ -1,4 +1,8 @@
 class SessionsController < ApplicationController
+  def login
+    @disable_nav = true
+  end
+
   def create
     @author = Author.find_or_create_by(uid: auth['uid']) do |u|
       u.name = auth[:info][:name]
@@ -6,12 +10,12 @@ class SessionsController < ApplicationController
       u.image = auth[:info][:image]
     end
     session[:user_id] = @author.id
-    redirect_to home_path
+    redirect_to root_path
   end
 
   def destroy
     session.destroy
-    redirect_to root_path
+    redirect_to login_path
   end
 
   private
