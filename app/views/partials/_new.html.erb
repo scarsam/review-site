@@ -3,11 +3,11 @@
   <%= hidden_field_tag :author_id, @author.id  %>
   <div class="form-group">
     <%= label_tag 'title' %>
-    <%= text_field_tag 'title', nil, class: 'form-control', minlength: '2', maxlength: '10', required: true %>
+    <%= text_field_tag 'title', nil, class: 'form-control', minlength: '2', maxlength: '50', required: true %>
   </div>
   <div class="form-group">
     <%= label_tag 'description' %>
-    <%= text_area_tag 'description', nil, class: 'form-control', rows: 5, minlength: '5', maxlength: '500', required: true %>
+    <%= text_area_tag 'description', nil, class: 'form-control', rows: 5, minlength: '5', maxlength: '1000', required: true %>
   </div>
   <div class="form-group">
     <%= label_tag 'rating (1 to 5)' %>
