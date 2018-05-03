@@ -75,3 +75,4 @@ V2
 - Testing?
 - Why not just store objects in an "store" and reference them instead of making calls to the server all the time?
 - Better way than empty() all the time?
+- Truncate, rails helper in html?
