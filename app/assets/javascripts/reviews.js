@@ -47,8 +47,16 @@ class Reviews {
     let diffDays = Math.abs(todayMs - reviewDateMs);
     return Math.round(diffDays / oneDay);
   }
+  ratingStars() {
+    let num = this.rating;
+    let id = this.id;
+    for (let i = 0; i < num; i++) {
+      $(`#review-${id} .stars`).append(starsTemplate());
+    }
+  }
   appendReviews() {
     $('.reviews').append(reviewsTemplate(this));
+    this.ratingStars();
     $(`#review-${this.id}`).on('click', function(e) {
       e.preventDefault();
       let reviewId = $(this).data('review');
@@ -73,7 +81,7 @@ function submitReview(values, author_id) {
     reviewObject.appendReviews();
     $('form')[0].reset();
     $('form .btn').removeAttr('disabled');
-  })
+  });
 }
 
 function getAuthorReviews(id) {
@@ -117,11 +125,14 @@ function reviewsTemplate(object) {
   return $.parseHTML(`
     <a href="#" data-review="${object.id}" id="review-${object.id}" class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">${object.title} - ${object.rating}</h5>
-      <small>Posted ${object.daysSinceCreated()} day(s) ago</small>
+      <h5 class="mb-1">${object.title}</h5>
+      <span class="stars"></span>
     </div>
       <p class="mb-1">${object.description}</p>
+    <div class="d-flex w-100 justify-content-between">
       <small>Posted by: ${object.author.name}</small>
+      <small>Posted ${object.daysSinceCreated()} day(s) ago</small>
+    </div>
     </a>
   `)
 }
@@ -130,9 +141,18 @@ function reviewsTemplate(object) {
 function reviewTemplate(object) {
   return $.parseHTML(`
     <div class="d-flex flex-column w-100">
-      <h4 class="mb-1">${object.title} - ${object.rating}</h4>
+      <h4 class="mb-1">${object.title}</h4>
       <p class="mb-1">${object.description}</p>
       <small>Posted by: <a href="#" class="author-${object.author.id}" data-author="${object.author.id}">${object.author.name}</a></small>
     </div>
   `)
+}
+
+// HTML template for review
+function starsTemplate() {
+  return $.parseHTML(`
+    <svg height="25" width="23" class="star rating">
+      <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;"/>
+    </svg>
+  `)[1]
 }
