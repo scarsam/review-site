@@ -1,3 +1,0 @@
-class AuthorsController < ApplicationController
-
-end

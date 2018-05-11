@@ -1,16 +1,19 @@
 // Document ready jQuery syntax
 $(function() {
   // Attaching event listeners on document ready
+  // Load the welcome (Review.all) action on document ready
   attachListeners();
   getReviews();
 });
 
+// Event listeners for the nav and the form
 function attachListeners() {
+  // Clears the reviews before submitting a new review and calling welcome (Review.all) action
   $('form').submit(function(e) {
     e.preventDefault();
     $('.reviews').empty();
-    getReviews();
     submitReview($(this).serialize(), $('#author_id').val());
+    getReviews();
   });
   $('#nav-reviews').click(function(e) {
     e.preventDefault();
@@ -47,6 +50,9 @@ class Reviews {
     let diffDays = Math.abs(todayMs - reviewDateMs);
     return Math.round(diffDays / oneDay);
   }
+  // Assigns the rating property on the object (1-5) to a variable
+  // Assigns the id of the object to a variable
+  // Loops through the numbers of ratings it was given and appends a star for each rating
   ratingStars() {
     let num = this.rating;
     let id = this.id;
@@ -54,6 +60,11 @@ class Reviews {
       $(`#review-${id} .stars`).append(starsTemplate());
     }
   }
+  // Takes the created review object and appends it to the DOM
+  // Calls ratingStars() method on it to attach stars
+  // Attach an click even on the div to make it a link
+  // The click event will take the data attribute which should be the review
+  // It calls the getReview function which calls the show action
   appendReviews() {
     $('.reviews').append(reviewsTemplate(this));
     this.ratingStars();
@@ -64,6 +75,10 @@ class Reviews {
       getReview(reviewId);
     });
   }
+  // Takes the created review object and appends it to the DOM
+  // Attach an click event to the div to make it a link
+  // The click event takes the data attribute for the div which should point to the author id
+  // And it calls the function index action
   appendReview() {
     $('.reviews').append(reviewTemplate(this));
     $(`.author-${this.author.id}`).on('click', function(e) {
@@ -74,7 +89,9 @@ class Reviews {
     });
   }
 }
-
+// Takes the form string value and the author id and posts it to the create action
+// Once it's been created we create an object in the front-end and appends it to the DOM
+// We reset the form and remove the disable button bootstrap adds
 function submitReview(values, author_id) {
   $.post(`/authors/${author_id}/reviews`, values).done(function(review) {
     let reviewObject = createReview(review);
@@ -83,7 +100,8 @@ function submitReview(values, author_id) {
     $('form .btn').removeAttr('disabled');
   });
 }
-
+// Makes an Ajax call to the index action
+// Creates an object and appends it to the DOM for each object
 function getAuthorReviews(id) {
   $.get('/authors/' + id + '/reviews', function(response) {
     response.forEach(function(review) {
@@ -93,6 +111,8 @@ function getAuthorReviews(id) {
   });
 }
 
+// Makes an Ajax call to the welcome action
+// Creates an object an appends it to the DOM for each object
 function getReviews() {
   $.get('/welcome', function(response) {
     response.forEach(function(review) {
@@ -102,6 +122,8 @@ function getReviews() {
   })
 }
 
+// Makes an Ajax call to the show action
+// Creates an object and appends it to the DOM for each object
 function getReview(id) {
   $.get('/reviews/' + id, function(review) {
     let reviewObject = createReview(review);
@@ -109,6 +131,7 @@ function getReview(id) {
   })
 }
 
+// Create review function that takes an review json and creates an new Review Object
 function createReview(review) {
   return new Reviews(
     review['id'],
